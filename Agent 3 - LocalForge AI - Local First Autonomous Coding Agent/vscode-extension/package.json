@@ -1,0 +1,10 @@
+{
+  "name":"sovereign-code-agent","displayName":"SovereignCodeAgent","description":"Local-first autonomous coding agent client","version":"0.3.0","publisher":"local","engines":{"vscode":"^1.90.0"},"categories":["Other"],"activationEvents":["onStartupFinished"],"main":"./extension.js",
+  "contributes":{"commands":[
+    {"command":"sovereign.open","title":"SovereignCodeAgent: Open Local Workbench"},
+    {"command":"sovereign.task","title":"SovereignCodeAgent: Run Autonomous Task"},
+    {"command":"sovereign.quality","title":"SovereignCodeAgent: Run Quality Gate"},
+    {"command":"sovereign.health","title":"SovereignCodeAgent: Check Local Models"},
+    {"command":"sovereign.diff","title":"SovereignCodeAgent: Show Git Diff"}
+  ],"configuration":{"title":"SovereignCodeAgent","properties":{"sovereign.apiUrl":{"type":"string","default":"http://127.0.0.1:8000","description":"Local SovereignCodeAgent API URL"},"sovereign.model":{"type":"string","default":"gpt-oss-20b","description":"Default local model id"},"sovereign.allowNetwork":{"type":"boolean","default":false,"description":"Allow GitHub/network actions for autonomous tasks"}}}}
+}

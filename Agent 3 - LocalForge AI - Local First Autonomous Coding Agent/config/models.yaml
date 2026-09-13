@@ -1,0 +1,46 @@
+models:
+  - id: gpt-oss-20b
+    vendor: OpenAI
+    provider: openai-compatible
+    base_url: http://127.0.0.1:8001/v1
+    model: gpt-oss-20b
+    roles: [planner, coder, debugger, reviewer, agent]
+    priority: 1
+    context_tokens: 131072
+    estimated_vram_gb: 16
+  - id: gpt-oss-120b
+    vendor: OpenAI
+    provider: openai-compatible
+    base_url: http://127.0.0.1:8002/v1
+    model: gpt-oss-120b
+    roles: [architect, complex-coder, final-review, reviewer]
+    priority: 2
+    context_tokens: 131072
+    estimated_vram_gb: 80
+  - id: phi-4
+    vendor: Microsoft
+    provider: openai-compatible
+    base_url: http://127.0.0.1:8003/v1
+    model: phi-4
+    roles: [planner, fast-coder, reviewer]
+    priority: 3
+    context_tokens: 16384
+    estimated_vram_gb: 10
+  - id: devstral-small-2
+    vendor: Mistral AI
+    provider: openai-compatible
+    base_url: http://127.0.0.1:8004/v1
+    model: Devstral-Small-2-24B-Instruct-2512
+    roles: [coder, debugger, agent]
+    priority: 4
+    context_tokens: 262144
+    estimated_vram_gb: 16
+  - id: codestral
+    vendor: Mistral AI
+    provider: openai-compatible
+    base_url: http://127.0.0.1:8005/v1
+    model: codestral
+    roles: [fast-coder, completion]
+    priority: 5
+    context_tokens: 32768
+    estimated_vram_gb: 16

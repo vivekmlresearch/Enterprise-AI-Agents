@@ -1,0 +1,42 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SovereignCodeAgent</title><link rel="stylesheet" href="/static/style.css"></head>
+<body>
+<div class="titlebar"><span>☰</span><span class="title">SovereignCodeAgent</span><div class="commandbox">Local autonomous coding workspace</div><span id="modelHealth">● checking models</span></div>
+<div class="workbench">
+  <nav class="activity">
+    <button class="active" data-view="explorer" title="Explorer">▱</button>
+    <button data-view="tasks" title="Tasks">✓</button>
+    <button data-view="models" title="Models">◉</button>
+    <button data-view="security" title="Security">◇</button>
+    <button data-view="source" title="Source Control">⑂</button>
+  </nav>
+  <aside class="sidebar">
+    <div class="sidebar-title"><span id="viewTitle">EXPLORER</span><button id="refreshBtn">↻</button></div>
+    <section id="explorerView" class="sideview"><div class="section-label">WORKSPACE</div><div id="tree"></div></section>
+    <section id="tasksView" class="sideview hidden"><div id="tasks"></div></section>
+    <section id="modelsView" class="sideview hidden"><div id="modelsPanel"></div></section>
+    <section id="securityView" class="sideview hidden"><button class="wide" onclick="loadSecurity()">Run secret scan</button><div id="securityPanel"></div></section>
+    <section id="sourceView" class="sideview hidden"><button class="wide" onclick="loadGit()">Refresh Git</button><pre id="gitPanel"></pre></section>
+  </aside>
+  <main class="center">
+    <div class="editor-tabs" id="tabs"><div class="welcome-tab active">Welcome</div></div>
+    <div class="editor-wrap">
+      <div class="editor-area" id="editorArea"><div class="welcome"><h1>SovereignCodeAgent</h1><p>Offline-first autonomous software engineering.</p><div class="quick"><button onclick="focusChat()">New autonomous task</button><button onclick="runQuality()">Run quality gate</button><button onclick="showDiff()">Open Git diff</button></div></div></div>
+      <aside class="chatpane">
+        <div class="chat-head"><b>LOCAL AGENT</b><select id="model"></select></div>
+        <div id="messages" class="messages"></div>
+        <div id="liveTask" class="live-task hidden"></div>
+        <textarea id="input" placeholder="Ask, edit, debug, test, or build an application..."></textarea>
+        <div class="chat-actions"><label><input id="network" type="checkbox"> Allow GitHub/network actions</label><div><button onclick="sendChat()">Chat</button><button class="primary" onclick="runTask()">Run Task</button></div></div>
+      </aside>
+    </div>
+    <div class="panel-tabs"><button class="active" data-panel="terminal">TERMINAL</button><button data-panel="output">OUTPUT</button><button data-panel="diff">DIFF</button><button data-panel="problems">PROBLEMS</button><span class="spacer"></span><button id="panelToggle">⌃</button></div>
+    <section class="bottom-panel" id="bottomPanel">
+      <div id="terminalPanel" class="panel-content"><pre id="terminalOut">Sovereign terminal ready. Commands execute inside the configured workspace.</pre><div class="terminal-line"><span>$</span><input id="terminalInput" placeholder="pytest -q"><button onclick="runTerminal()">Run</button></div></div>
+      <pre id="outputPanel" class="panel-content hidden"></pre>
+      <pre id="diffPanel" class="panel-content hidden"></pre>
+      <pre id="problemsPanel" class="panel-content hidden">No problems loaded.</pre>
+    </section>
+  </main>
+</div>
+<footer class="statusbar"><span id="branchStatus">⑂ git</span><span id="taskStatus">No active task</span><span class="grow"></span><span id="telemetryStatus">0 local tokens</span><span>Offline-first</span></footer>
+<script src="/static/app.js"></script></body></html>
