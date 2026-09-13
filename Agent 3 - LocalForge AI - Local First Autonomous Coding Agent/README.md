@@ -14,7 +14,8 @@ Instead of sending every engineering request to a paid cloud LLM, LocalForge AI 
 
 ## Product strategy - Product Management
 
-**Product vision:** Make autonomous software engineering accessible on local infrastructure without requiring developers to trade privacy, control, or predictable cost for AI-assisted productivity.
+**Product vision:** Enable developers to build, test, and ship software autonomously using local AI—while maintaining control over their code, infrastructure, models, and cost.
+
 
 ### User problem
 
