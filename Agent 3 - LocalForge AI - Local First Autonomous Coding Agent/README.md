@@ -559,19 +559,53 @@ These questions drive the architecture and future benchmarking work.
 
 ---
 
-# Notes
+## Engineering decisions
 
-LocalForge AI is an experimental autonomous software-engineering platform. Review generated changes before deploying them to production environments.
+* **Local-first, model-agnostic inference.** LocalForge AI communicates with locally hosted models through a common inference interface rather than coupling the agent to a single model or vendor. The initial registry supports **OpenAI gpt-oss-20B / 120B, Microsoft Phi-4, Mistral Devstral, and Codestral**. Models can be replaced or upgraded without redesigning the orchestration layer.
+
+* **Deterministic tools before LLM inference.** Repository search, symbol extraction, Git operations, test execution, static analysis, and security checks are delegated to deterministic developer tools whenever possible. LLM inference is reserved primarily for planning, implementation, debugging, code review, and architectural reasoning. This improves reproducibility while reducing unnecessary inference and context consumption.
+
+* **Role-aware model routing instead of one-model-for-everything.** Coding tasks have different computational requirements. LocalForge AI separates planning, coding, debugging, and final-review responsibilities and routes each workload to an appropriate available model. Failed or complex tasks can escalate to stronger models instead of paying the computational cost of running the largest model for every request.
+
+* **Evidence-based completion instead of model-declared completion.** An autonomous model is not allowed to treat its own confidence as proof that a task is finished. LocalForge AI uses a Definition-of-Done pipeline built around executable evidence: compilation/build status, automated tests, security checks, Git state, and independent review. Failed validation returns the task to the engineering loop for diagnosis and repair.
 
 ---
 
-# License
+## Model data, licensing, and compliance
 
-Licensed under the **Apache License, Version 2.0**.
+* **LocalForge AI source code and model weights are separately licensed artifacts.** The project's software license does not override the license, acceptable-use requirements, attribution requirements, redistribution conditions, or other terms associated with individual model weights. Users are responsible for reviewing the applicable license before downloading, redistributing, modifying, or deploying a model.
 
-Apache 2.0 permits commercial and private use, modification, and distribution subject to its terms, while also providing an explicit patent license.
+* **Local inference is the default architectural boundary.** Prompts, repository source code, retrieved context, test output, and agent reasoning can remain on the machine running LocalForge AI when local inference is used. Core coding-agent operation does not require sending repository content to a commercial cloud LLM API.
 
-See the repository's `LICENSE` file for the complete license text.
+* **Network-capable operations are separated from local reasoning.** GitHub push, pull-request creation, remote CI inspection, model downloads, package installation, and similar operations inherently require external connectivity. These operations are treated separately from offline inference and can be protected through explicit network/authorization gates.
+
+* **Autonomous execution is security-sensitive.** Model-generated commands execute only through the platform's controlled tool layer, which provides workspace path restrictions, destructive-command controls, secret scanning, and optional container isolation. Credentials and tokens should never be embedded in prompts, model configuration, source files, or committed repository history. Production deployments should additionally use OS/container-level sandboxing and least-privilege credentials.
+
+
+---
+
+## Known limitations and roadmap
+
+* **Local model quality and performance are hardware-dependent.** Large models such as gpt-oss-120B require substantially more compute and memory than lightweight models such as Phi-4. Current routing considers model role and endpoint availability; **GPU/VRAM-aware scheduling, latency prediction, model benchmarking, and dynamic resource allocation** are planned improvements.
+
+* **Repository retrieval is currently structural rather than fully semantic.** LocalForge AI indexes files and programming-language symbols to avoid injecting an entire repository into the context window. A future retrieval layer will add local embeddings, semantic code search, dependency-aware context construction, and explicit context-window budgeting for very large repositories.
+
+* **Autonomous validation reduces risk but cannot guarantee bug-free software.** Passing builds, tests, security checks, and reviewer gates provides stronger evidence of completion than model self-assessment, but it does not prove correctness for arbitrary software. Planned improvements include generated regression tests, mutation testing, coverage-aware validation, static-analysis integration, and CI-driven repair loops.
+
+* **The Code-style workbench is still evolving toward a complete IDE experience.** The current implementation provides repository exploration, editing, agent chat, tasks, model status, terminal execution, source-control information, security checks, and diff/output views. Planned work includes Monaco-based editing, persistent terminal sessions, interactive Git staging, patch-based edits, parallel specialist agents, semantic repository memory, and richer execution telemetry.
+
+---
+
+## License
+
+LocalForge AI source code is licensed under the **[Apache License 2.0](LICENSE)**.
+
+The license permits use, modification, distribution, and commercial use subject to the Apache License 2.0 terms and includes an explicit patent-license grant.
+
+**Model weights and third-party components retain their own licenses.** In particular, downloading or running OpenAI, Microsoft, Mistral, or other third-party models through LocalForge AI does not cause those model weights to become licensed under Apache 2.0.
+
+Before distributing a packaged LocalForge AI installation containing model weights, review and comply with the license and redistribution requirements of every included model and dependency.
+
 
 
 
