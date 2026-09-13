@@ -397,7 +397,7 @@ LocalForge-AI/
 
 # Getting Started
 
-### 1. Clone
+### 1. Navigate
 
 ```bash
 git clone <your-repository>
@@ -573,8 +573,6 @@ Apache 2.0 permits commercial and private use, modification, and distribution su
 
 See the repository's `LICENSE` file for the complete license text.
 
----
 
-## LocalForge AI
 
-**Local models. Intelligent routing. Autonomous engineering. Evidence-based delivery.**
+
