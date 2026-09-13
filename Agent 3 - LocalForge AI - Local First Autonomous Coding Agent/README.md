@@ -12,7 +12,114 @@ Instead of sending every engineering request to a paid cloud LLM, LocalForge AI 
 
 ---
 
-## Why LocalForge AI?
+## Product strategy - Product Management
+
+**Product vision:** Make autonomous software engineering accessible on local infrastructure without requiring developers to trade privacy, control, or predictable cost for AI-assisted productivity.
+
+### User problem
+
+Cloud coding agents provide strong developer productivity but introduce recurring inference cost, repository-data governance considerations, network dependency, and limited control over model selection.
+
+LocalForge AI explores whether a **local-first, model-agnostic coding agent** can deliver useful autonomous software-engineering workflows while keeping developers in control of their models, code, compute, and execution environment.
+
+### Target users
+
+| User                         | Primary need                                                 |
+| ---------------------------- | ------------------------------------------------------------ |
+| Individual developers        | Powerful AI coding without recurring API usage               |
+| AI/ML engineers              | Experiment with and route across local models                |
+| Enterprise engineering teams | Keep sensitive repositories within controlled infrastructure |
+| Platform teams               | Standardize local AI-assisted development                    |
+| Regulated organizations      | Increase control over source-code and model-data boundaries  |
+
+### Product principles
+
+1. **Local first, cloud optional** — core engineering workflows should work without a commercial cloud LLM.
+2. **Outcome over generation** — success means working, validated software rather than generated code.
+3. **Model choice without architecture changes** — models should be replaceable infrastructure components.
+4. **Controlled autonomy** — higher agent autonomy requires stronger security and validation boundaries.
+5. **Measurable efficiency** — model usage, latency, task success, escalation, and avoided cloud inference should be observable.
+
+### Success metrics
+
+The platform will ultimately be evaluated using measurable product outcomes:
+
+* **Task completion rate** — percentage of engineering tasks passing the Definition-of-Done gate.
+* **First-pass success rate** — tasks completed without repair iterations.
+* **Mean iterations to completion** — debugging cycles required per successful task.
+* **Time to validated solution** — request-to-passing-build/test duration.
+* **Local inference ratio** — percentage of AI workloads executed locally.
+* **Cloud tokens avoided** — estimated external inference displaced by local execution.
+* **Model escalation rate** — percentage of tasks requiring a more capable model.
+* **Developer intervention rate** — percentage of tasks requiring human correction.
+* **Regression escape rate** — validated tasks later found to introduce failures.
+
+
+## Program execution strategy - Program Management
+
+LocalForge AI is structured as a multi-workstream AI engineering program rather than a single-model coding experiment.
+
+### Program workstreams
+
+| Workstream                   | Scope                                                    | Primary outcome                   |
+| ---------------------------- | -------------------------------------------------------- | --------------------------------- |
+| **Model Platform**           | Local inference, model registry, routing and fallback    | Reliable multi-model execution    |
+| **Agent Runtime**            | Planning, coding, debugging and review loops             | Autonomous task completion        |
+| **Repository Intelligence**  | File retrieval, symbol indexing and context construction | Relevant, efficient model context |
+| **Developer Experience**     | VS Code integration and local workbench                  | Low-friction developer adoption   |
+| **Quality Engineering**      | Build, tests, review and Definition-of-Done gates        | Evidence-based completion         |
+| **Security & Governance**    | Sandboxing, secrets, permissions and network boundaries  | Controlled autonomous execution   |
+| **Developer Infrastructure** | Git, GitHub and CI integration                           | End-to-end software delivery      |
+| **Observability**            | Model usage, latency, failures and token telemetry       | Measurable platform performance   |
+
+
+### Program milestones
+
+**M1 — Local inference foundation**
+Establish model registry, local endpoints and baseline inference.
+
+**M2 — Autonomous engineering loop**
+Enable planning, implementation, execution, debugging and iterative repair.
+
+**M3 — Repository intelligence**
+Introduce structural retrieval, symbol indexing and context optimization.
+
+**M4 — Quality & security gates**
+Add testing, security controls, sandboxing and evidence-based completion.
+
+**M5 — Developer workflow integration**
+Integrate VS Code, Git, GitHub and CI workflows.
+
+**M6 — Scale & optimization**
+Introduce semantic retrieval, parallel agents, GPU-aware routing and model-performance benchmarking.
+
+### Program risks and mitigations
+
+| Risk                         | Impact                    | Mitigation                             |
+| ---------------------------- | ------------------------- | -------------------------------------- |
+| Model hallucination          | Incorrect code/actions    | Deterministic tools + validation gates |
+| Model availability changes   | Platform instability      | Model abstraction + fallback routing   |
+| Large repository context     | Cost/latency degradation  | Retrieval + context budgeting          |
+| Autonomous command execution | Security exposure         | Sandboxing + command policies          |
+| Model licensing differences  | Distribution risk         | Independent model-license governance   |
+| Hardware variability         | Unpredictable performance | Hardware-aware routing and benchmarks  |
+| Cross-component failures     | Difficult debugging       | Structured telemetry + checkpoints     |
+
+### Program operating metrics
+
+Program health is measured across **quality, velocity, reliability, efficiency, and risk**:
+
+**Quality:** task success rate, regression rate, test-pass rate
+**Velocity:** time-to-completion, iteration count
+**Reliability:** model availability, tool success rate, CI success rate
+**Efficiency:** tokens/task, local inference ratio, GPU utilization
+**Risk:** blocked unsafe actions, secret detections, failed security gates
+
+
+
+===================
+
+## Why LocalForge AI? - Engineering
 
 Modern coding agents are powerful, but continuous cloud inference introduces cost, privacy, connectivity, and data-governance considerations.
 
